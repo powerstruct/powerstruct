@@ -21,6 +21,7 @@ export default function ThemeToggle() {
         onPress={() => setTheme(current === "light" ? "dark" : "light")}
         aria-pressed={current === "light"}
         className="px-3 py-1 rounded"
+        aria-label="Toggle Theme"
       >
         {current === "light" ? (
           <Moon className="fill-black" />

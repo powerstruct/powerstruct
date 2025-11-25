@@ -7,10 +7,7 @@ import {
   RadioTower,
   Building2,
 } from "lucide-react";
-import PowerTower from "./PowerTower";
-
-const contactNo = "+919876543210";
-
+import { contactNo } from "@/lib/config";
 const InfrastructureVisual = () => {
   return (
     <div className="relative w-full h-[400px] flex items-center justify-center perspective-1000">

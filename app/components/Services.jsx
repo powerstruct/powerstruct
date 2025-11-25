@@ -124,8 +124,7 @@ const ServiceCard = ({ service, index }) => {
           {service.description}
         </p>
 
-        <Button
-          as={Link}
+        <a
           target="_blank"
           href={`https://wa.me/+91${whatsappNo}?text=${encodeURIComponent(
             `Hello Powerstruct Team,\n I am interested in collaborating with you.\n Service I want to know more about : *${service?.title}*\n\n Please let me know the next steps.`
@@ -138,7 +137,7 @@ const ServiceCard = ({ service, index }) => {
               isHovered ? "translate-x-1" : ""
             }`}
           />
-        </Button>
+        </a>
       </div>
 
       <div
