@@ -14,12 +14,36 @@ import {
   companyName,
   contactMail,
   contactNo,
+  contactNo2,
   logo,
   pageDescription,
 } from "@/lib/config";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  const socialLinks = [
+    {
+      name: "Facebook",
+      path: "/assets/social/facebook.png",
+      href: "https://www.facebook.com/",
+    },
+    {
+      name: "Twitter",
+      path: "/assets/social/twitter.png",
+      href: "https://x.com/",
+    },
+    {
+      name: "Instagram",
+      path: "/assets/social/instagram.png",
+      href: "https://instagram.com",
+    },
+    {
+      name: "YouTube",
+      path: "/assets/social/youtube.png",
+      href: "https://youtube.com",
+    },
+  ];
 
   return (
     <footer
@@ -46,13 +70,19 @@ const Footer = () => {
               {pageDescription}
             </p>
             <div className="flex gap-4">
-              {[Facebook, Twitter, Linkedin, Instagram].map((Icon, index) => (
+              {socialLinks?.map((social) => (
                 <a
-                  key={index}
-                  href="#"
-                  className="p-2 rounded-full light:bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-orange-500 dark:hover:text-orange-400 hover:bg-orange-50 dark:hover:bg-slate-700 transition-all duration-300 shadow-sm border border-slate-100 dark:border-slate-700"
+                  target="_blank"
+                  key={social.name}
+                  href={social.href}
+                  className="w-6 h-6 transition-opacity hover:opacity-80"
                 >
-                  <Icon size={18} />
+                  <span className="sr-only">{social.name}</span>
+                  <img
+                    src={social.path}
+                    alt={social.name}
+                    className="w-full h-full object-contain"
+                  />
                 </a>
               ))}
             </div>
@@ -129,7 +159,9 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3 text-sm light:text-slate-600 dark:text-slate-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
                 <Phone size={18} className="text-orange-500 shrink-0" />
-                <a href={"tel:+91" + contactNo}>+91 {contactNo}</a>
+                <a href={"tel:+91" + contactNo}>
+                  +91 {contactNo}, +91 {contactNo2}
+                </a>
               </li>
               <li className="flex items-center gap-3 text-sm light:text-slate-600 dark:text-slate-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
                 <Mail size={18} className="text-orange-500 shrink-0" />

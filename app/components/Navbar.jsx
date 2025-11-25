@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { logo } from "@/lib/config";
 import { Button } from "@heroui/react";
 import ThemeToggle from "./ChangeTheme";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +46,7 @@ const Navbar = () => {
               }}
             />
             <div className="flex flex-col leading-none ">
-              <span className="font-extrabold text-md lg:text-xl light:text-[#242424] tracking-tighter poppins">
+              <span className="font-extrabold text-lg lg:text-2xl light:text-[#242424] tracking-tighter poppins">
                 POWER<span className="text-[#095C9E]">STRUCT</span>
               </span>
             </div>
@@ -54,14 +55,14 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-8">
             <nav className="flex space-x-8">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   className="py-4 text-sm font-bold hover:text-[#14bcff] transition-colors relative group"
                 >
                   {item.name}
                   <span className="absolute bottom-0 left-0 w-full h-1 bg-[#14bcff] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                </a>
+                </Link>
               ))}
               <ThemeToggle />
             </nav>
@@ -87,14 +88,14 @@ const Navbar = () => {
       >
         <div className="px-6 py-6 space-y-4 flex flex-col">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.name}
               href={item.href}
               onClick={() => setIsOpen(false)}
               className="font-medium text-lg border-b border-gray-700 pb-2 transition-colors"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
