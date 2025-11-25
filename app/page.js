@@ -6,6 +6,7 @@ import Clients from "./components/Clients";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
 import MissionAndVision from "./components/MissionAndVision";
+import Connect from "./components/Connect";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Clients />
       <Projects />
       <Footer />
+      <Connect />
     </div>
   );
 }
