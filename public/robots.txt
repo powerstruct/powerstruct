@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.powerstruct.com
+Host: https://www.powerstruct.in
 
 # Sitemaps
-Sitemap: https://www.powerstruct.com/sitemap.xml
+Sitemap: https://www.powerstruct.in/sitemap.xml

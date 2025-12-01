@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: "https://www.powerstruct.com",
+  siteUrl: "https://www.powerstruct.in",
   generateRobotsTxt: true,
   changefreq: "weekly",
   priority: 0.7,
