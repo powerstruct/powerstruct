@@ -93,10 +93,10 @@ const AboutPage = () => {
                   </div>
                   <div className="flex items-start flex-col">
                     <h3 className="text-xl font-bold light:text-slate-900 dark:text-white">
-                      Kalam Azad
+                      Abul Kalam Azad
                     </h3>
                     <p className="text-orange-600 font-medium text-sm mb-4">
-                      CEO, Powerstruct
+                      CEO, Powerstruct & Shareholder
                     </p>
                   </div>
                 </div>
