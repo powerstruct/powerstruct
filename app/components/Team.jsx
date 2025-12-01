@@ -1,21 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
-// import imdos from "@/lib/imdos";
-// import useSWR from "swr";
-// import { FILEPATH } from "@/lib/config";
+import React from "react";
+import { FILEPATH } from "@/lib/config";
 import TeamSkeleton from "./skeletons/TeamSkeleton";
+import useSWR from "swr";
+import imdos from "@/lib/imdos";
 
 const Team = () => {
-  const router = useRouter();
-
-  //   const fetcher = async () => {
-  //     const data = await imdos.request("SELECT * FROM team");
-  //     return data;
-  //   };
-  //   const { data: team } = useSWR("/team", fetcher);
-  const [team, setTeam] = useState(null);
+  const fetcher = async () => {
+    const data = await imdos.request("SELECT * FROM team");
+    return data;
+  };
+  const { data: team } = useSWR("/team", fetcher);
 
   return (
     <div

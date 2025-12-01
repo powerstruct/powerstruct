@@ -8,161 +8,27 @@ import {
   Filter,
 } from "lucide-react";
 import { Button } from "@heroui/react";
-
-const projectsData = [
-  {
-    id: 1,
-    title: "132kV Transmission Line",
-    category: "Transmission",
-    location: "Guwahati, Assam",
-    date: "2023",
-    status: "Completed",
-    image: "https://placehold.co/600x400/1e293b/ffffff?text=Transmission+Line",
-    description:
-      "Construction of 45km high-voltage transmission lines connecting regional grids.",
-  },
-  {
-    id: 2,
-    title: "Rural Electrification Phase II",
-    category: "Power Systems",
-    location: "Sonitpur District",
-    date: "2024",
-    status: "Ongoing",
-    image: "https://placehold.co/600x400/ea580c/ffffff?text=Rural+Power",
-    description:
-      "Last-mile connectivity project bringing electricity to 50+ remote villages.",
-  },
-  {
-    id: 3,
-    title: "Urban Substation Upgrade",
-    category: "Infrastructure",
-    location: "Dispur, Assam",
-    date: "2022",
-    status: "Completed",
-    image: "https://placehold.co/600x400/0f172a/ffffff?text=Substation",
-    description:
-      "Modernization of 33/11kV substation with automated control systems.",
-  },
-  {
-    id: 4,
-    title: "Telecom Tower Network",
-    category: "Telecom",
-    location: "Northeast Region",
-    date: "2024",
-    status: "Ongoing",
-    image: "https://placehold.co/600x400/475569/ffffff?text=Telecom+Towers",
-    description: "Civil foundation and erection of 200+ 4G/5G telecom towers.",
-  },
-  {
-    id: 5,
-    title: "National Highway Lighting",
-    category: "Electrical",
-    location: "NH-27 Corridor",
-    date: "2023",
-    status: "Completed",
-    image: "https://placehold.co/600x400/334155/ffffff?text=Highway+Lighting",
-    description:
-      "Installation of energy-efficient LED street lighting across 30km of highway.",
-  },
-  {
-    id: 6,
-    title: "Industrial Park Civil Works",
-    category: "Civil",
-    location: "Silchar",
-    date: "2025",
-    status: "Ongoing",
-    image:
-      "https://upmarketresearch.com/assets/images/post%20images/06/1179_Electricity%20Transmission%20Towers.jpg",
-    description:
-      "Foundation and structural engineering for a new heavy industry complex.",
-  },
-];
-
-const ProjectCard = ({ project }) => (
-  <div className="group relative light:bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 hover:border-orange-200 dark:hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-full">
-    <div className="relative h-56 overflow-hidden">
-      <div className="absolute inset-0 light:bg-slate-900/20 group-hover:bg-slate-900/0 transition-colors duration-500 z-10" />
-      <img
-        src={
-          "https://upmarketresearch.com/assets/images/post%20images/06/1179_Electricity%20Transmission%20Towers.jpg"
-        }
-        alt={project.title}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-      />
-
-      <div className="absolute top-4 left-4 z-20">
-        <span
-          className={`
-          inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide backdrop-blur-md border
-          ${
-            project.status === "Completed"
-              ? "bg-emerald-500/90 text-white border-emerald-400"
-              : "bg-orange-500/90 text-white border-orange-400 animate-pulse-slow"
-          }
-        `}
-        >
-          {project.status === "Completed" ? (
-            <CheckCircle2 size={12} />
-          ) : (
-            <Loader2 size={12} className="animate-spin" />
-          )}
-          {project.status}
-        </span>
-      </div>
-
-      <div className="absolute bottom-4 left-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-        <span className="px-2 py-1 light:bg-white/90 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded shadow-sm">
-          {project.category}
-        </span>
-      </div>
-    </div>
-
-    <div className="p-6 flex flex-col flex-grow">
-      <div className="flex justify-between items-start mb-3">
-        <div className="flex items-center gap-1 text-xs font-medium light:text-slate-500 dark:text-slate-400">
-          <Calendar size={14} />
-          <span>{project.date}</span>
-        </div>
-        <div className="flex items-center gap-1 text-xs font-medium light:text-slate-500 dark:text-slate-400">
-          <MapPin size={14} />
-          <span>{project.location}</span>
-        </div>
-      </div>
-
-      <h3 className="text-xl font-bold light:text-slate-900 dark:text-white mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-        {project.title}
-      </h3>
-
-      <p className="light:text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
-        {project.description}
-      </p>
-
-      <Button
-        fullWidth
-        className="py-3 rounded flex items-center gap-2 text-sm font-bold light:text-slate-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors mt-auto"
-      >
-        View Details
-        <ArrowUpRight
-          size={16}
-          className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-        />
-      </Button>
-    </div>
-  </div>
-);
+import imdos from "@/lib/imdos";
+import useSWR from "swr";
 
 const Projects = () => {
+  const fetcher = async () => {
+    const data = await imdos.request("SELECT * FROM projects");
+    return data;
+  };
+  const { data: projectsData } = useSWR("/projectsData", fetcher);
+
   const [filter, setFilter] = useState("All");
 
-  const filteredProjects = projectsData.filter((project) => {
+  const filteredProjects = projectsData?.filter((project) => {
     if (filter === "All") return true;
     return project.status === filter;
   });
 
   const stats = {
-    total: projectsData.length,
-    completed: projectsData.filter((p) => p.status === "Completed").length,
-    ongoing: projectsData.filter((p) => p.status === "Ongoing").length,
+    total: projectsData?.length,
+    completed: projectsData?.filter((p) => p.status === "completed").length,
+    ongoing: projectsData?.filter((p) => p.status === "ongoing").length,
   };
 
   return (
@@ -190,7 +56,7 @@ const Projects = () => {
           </div>
 
           <div className="flex p-1 light:bg-slate-100 dark:bg-slate-900 rounded-xl">
-            {["All", "Ongoing", "Completed"].map((status) => (
+            {["All", "ongoing", "completed"].map((status) => (
               <Button
                 key={status}
                 onPress={() => setFilter(status)}
@@ -216,7 +82,7 @@ const Projects = () => {
                   >
                     {status === "All"
                       ? stats.total
-                      : status === "Completed"
+                      : status === "completed"
                       ? stats.completed
                       : stats.ongoing}
                   </span>
@@ -226,9 +92,8 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
+          {filteredProjects?.map((project, index) => (
             <div
               key={project.id}
               className="animate-fadeInUp"
@@ -239,8 +104,7 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Empty State (Just in case) */}
-        {filteredProjects.length === 0 && (
+        {filteredProjects?.length === 0 && (
           <div className="text-center py-20 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700">
             <p className="text-slate-500 dark:text-slate-400 font-medium">
               No projects found in this category.
@@ -281,5 +145,63 @@ const Projects = () => {
     </section>
   );
 };
+
+const ProjectCard = ({ project }) => (
+  <div className="group relative light:bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 hover:border-orange-200 dark:hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-full">
+    <div className="relative h-56 overflow-hidden">
+      <div className="absolute inset-0 light:bg-slate-900/20 group-hover:bg-slate-900/0 transition-colors duration-500 z-10" />
+      <img
+        src={
+          "https://upmarketresearch.com/assets/images/post%20images/06/1179_Electricity%20Transmission%20Towers.jpg"
+        }
+        alt={project.name}
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+      />
+
+      <div className="absolute top-4 left-4 z-20">
+        <span
+          className={`
+          inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide backdrop-blur-md border
+          ${
+            project.status === "completed"
+              ? "bg-emerald-500/90 text-white border-emerald-400"
+              : "bg-orange-500/90 text-white border-orange-400 animate-pulse-slow"
+          }
+        `}
+        >
+          {project.status === "completed" ? (
+            <CheckCircle2 size={12} />
+          ) : (
+            <Loader2 size={12} className="animate-spin" />
+          )}
+          {project.status}
+        </span>
+      </div>
+
+      <div className="absolute bottom-4 left-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+        <span className="px-2 py-1 light:bg-white/90 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded shadow-sm">
+          {project.category}
+        </span>
+      </div>
+    </div>
+
+    <div className="p-6 flex flex-col flex-grow">
+      <div className="flex justify-between items-start mb-3">
+        <div className="flex items-center gap-1 text-xs font-medium light:text-slate-500 dark:text-slate-400">
+          <Calendar size={14} />
+          <span>{project.year}</span>
+        </div>
+      </div>
+
+      <h3 className="text-xl font-bold light:text-slate-900 dark:text-white mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+        {project.name}
+      </h3>
+
+      <p className="light:text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex-grow">
+        {project.description}
+      </p>
+    </div>
+  </div>
+);
 
 export default Projects;

@@ -54,7 +54,7 @@ const Navbar = () => {
             </div>
           </a>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             <nav className="flex space-x-8 items-center">
               {navItems.map((item) => (
                 <Link
@@ -72,14 +72,14 @@ const Navbar = () => {
             </nav>
           </div>
 
-          <div className="md:hidden flex items-center transition-all duration-500 ease-in-out">
+          <div className="lg:hidden flex items-center transition-all duration-500 ease-in-out">
             <ThemeToggle />
             <Button
               isIconOnly
               onPress={() => setIsOpen(!isOpen)}
               aria-label="Menu"
             >
-              {isOpen ? <X size={25} /> : <Menu size={25} />} hh
+              {isOpen ? <X size={25} /> : <Menu size={25} />}
             </Button>
           </div>
         </div>

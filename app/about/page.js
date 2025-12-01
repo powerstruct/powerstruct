@@ -36,13 +36,13 @@ const AboutPage = () => {
       <div className="min-h-screen light:bg-white font-sans light:text-slate-900 transition-colors duration-300 px-4 md:px-8 lg:px-[100px]">
         <main>
           <section className="py-6">
-            <div className="max-w-full mx-auto">
+            <div className="max-w-full mx-auto mb-6">
               <div className="light:bg-white dark:bg-slate-900 rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100 dark:border-slate-800 flex flex-col md:flex-row gap-12 items-center">
                 <div className="w-full md:w-1/3 flex flex-col items-center text-center">
                   <div className="w-48 h-48 rounded-lg overflow-hidden mb-6 shadow-lg">
                     <img
-                      src="https://placehold.co/400x400/334155/ffffff?text=Aminur+Islam"
-                      alt="Aminur Islam"
+                      src="/assets/team/md-powerstruct.jpeg"
+                      alt="Aminur Islam MD Powerstruct"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -54,35 +54,72 @@ const AboutPage = () => {
                       Managing Director & Shareholder
                     </p>
                   </div>
-
-                  <div className="flex gap-3 justify-center">
-                    <button className="p-2 light:bg-slate-100 dark:bg-slate-800 light:text-slate-500 hover:text-yellow-600 transition-colors border rounded-full">
-                      <Facebook size={16} />
-                    </button>
-                    <button className="p-2 light:bg-slate-100 dark:bg-slate-800 light:text-slate-500 hover:text-yellow-400 transition-colors border rounded-full">
-                      <Twitter size={16} />
-                    </button>
-                  </div>
                 </div>
 
                 <div className="w-full md:w-2/3 relative">
                   <Quote className="absolute -top-6 -left-16 text-orange-200 dark:text-orange-900/20 w-16 h-16 transform -scale-x-100" />
                   <h4 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">
-                    From the Founder's Desk
+                    From the MD's Desk
                   </h4>
 
                   <div className="space-y-4 text-lg light:text-slate-700 dark:text-slate-300 font-medium leading-relaxed font-serif italic">
                     <p>
-                      "At Powerstruct, we believe that true engineering
-                      excellence lies in the details. Our partnership is built
-                      on a foundation of integrity and a relentless commitment
-                      to quality."
+                      At Powerstruct, engineering excellence isn't just a
+                      goal—it's our DNA. Every project we undertake is anchored
+                      in unwavering integrity and an obsession with quality that
+                      goes beyond industry standards.
                     </p>
                     <p>
-                      "We aspire to drive India's development through projects
-                      that embody technical precision. We aren't just building
-                      infrastructure; we are empowering the nation's future, one
-                      project at a time."
+                      Our vision is clear: to shape India's infrastructure
+                      landscape through projects that set new benchmarks in
+                      technical precision. We're not simply constructing
+                      buildings and bridges; we're laying the foundation for a
+                      stronger, more resilient nation, one thoughtfully executed
+                      project at a time.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="max-w-full mx-auto">
+              <div className="light:bg-white dark:bg-slate-900 rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100 dark:border-slate-800 flex flex-col md:flex-row-reverse gap-12 items-center">
+                <div className="w-full md:w-1/3 flex flex-col items-center text-center">
+                  <div className="w-48 h-48 rounded-lg overflow-hidden mb-6 shadow-lg">
+                    <img
+                      src="/assets/team/ceo-powerstruct.jpeg"
+                      alt="CEO Powerstruct"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex items-start flex-col">
+                    <h3 className="text-xl font-bold light:text-slate-900 dark:text-white">
+                      Kalam Azad
+                    </h3>
+                    <p className="text-orange-600 font-medium text-sm mb-4">
+                      CEO, Powerstruct
+                    </p>
+                  </div>
+                </div>
+
+                <div className="w-full md:w-2/3 relative">
+                  <h4 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">
+                    From the CEO's Desk
+                  </h4>
+
+                  <div className="space-y-4 text-lg light:text-slate-700 dark:text-slate-300 font-medium leading-relaxed font-serif italic">
+                    <p>
+                      Excellence in engineering starts with the smallest detail,
+                      and at Powerstruct, we've made that our promise. Our
+                      collaborations are rooted in transparency, trust, and an
+                      unyielding dedication to delivering quality that stands
+                      the test of time.
+                    </p>
+                    <p>
+                      We're driven by a bigger purpose—to contribute
+                      meaningfully to India's growth story through
+                      infrastructure that reflects precision and innovation.
+                      Each project we deliver is more than construction; it's
+                      our commitment to building the future our nation deserves.
                     </p>
                   </div>
                 </div>
@@ -95,7 +132,7 @@ const AboutPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
                 <StatBlock
                   icon={Award}
-                  value="10+ Years"
+                  value="15+ Years"
                   label="Field Experience"
                 />
                 <StatBlock
