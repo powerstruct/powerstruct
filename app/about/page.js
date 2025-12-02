@@ -86,7 +86,7 @@ const AboutPage = () => {
                 <div className="w-full md:w-1/3 flex flex-col items-center text-center">
                   <div className="w-48 h-48 rounded-lg overflow-hidden mb-6 shadow-lg">
                     <img
-                      src="/assets/team/ceo-powerstruct.jpeg"
+                      src="/assets/team/ceo.jpeg"
                       alt="CEO Powerstruct"
                       className="w-full h-full object-cover"
                     />
